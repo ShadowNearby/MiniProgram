@@ -15,7 +15,7 @@ Page({
       })
       const db = await getApp().database()
       // 根据 _id，查询待办事项
-      db.collection(getApp().globalData.collection).where({
+      db.collection('todo').where({
         _id: this.data._id
       }).get().then(res => {
         // 解包获得返回列表（应只匹配一项）中的 todo 对象
@@ -69,7 +69,7 @@ Page({
       files: this.data.files
     })
     // 根据 id 从数据库中删除对应文件记录
-    db.collection(getApp().globalData.collection).where({
+    db.collection('todo').where({
       _id: this.data._id
     }).update({
       data: {

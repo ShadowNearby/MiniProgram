@@ -99,7 +99,7 @@ Page({
     }
     const db = await getApp().database()
     // 在数据库中新建待办事项，并填入已编辑对信息
-    db.collection(getApp().globalData.collection).add({
+    db.collection('todo').add({
       data: {
         date:this.data.date,
         title: this.data.title,       // 待办标题

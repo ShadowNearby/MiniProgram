@@ -21,7 +21,7 @@ Page({
       })
       const db = await getApp().database()
       // 根据待办 _id 加载信息
-      db.collection(getApp().globalData.collection).where({
+      db.collection('todo').where({
         _id: this.data._id
       }).get().then(res => {
         // 解包获得 todo 对象
@@ -108,7 +108,7 @@ Page({
   async deleteTodo() {
     const db = await getApp().database()
     // 根据待办 _id 删除待办事项
-    db.collection(getApp().globalData.collection).where({
+    db.collection('todo').where({
       _id: this.data._id
     }).remove()
     // 删除完成后，退回首页
@@ -152,7 +152,7 @@ Page({
     }
     const db = await getApp().database()
     // 校验通过后，根据待办 _id，更新待办信息
-    db.collection(getApp().globalData.collection).where({
+    db.collection('todo').where({
       _id: this.data._id
     }).update({
       data: {

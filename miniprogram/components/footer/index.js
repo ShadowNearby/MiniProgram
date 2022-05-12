@@ -22,7 +22,7 @@ Component({
     async addFile() {
       const db = await getApp().database()
       // 获取当前待办信息
-      db.collection(getApp().globalData.collection).where({
+      db.collection('todo').where({
         _id: this.properties._id
       }).get().then(res => {
         const {

@@ -11,11 +11,15 @@ exports.main = async (event, context) => {
   try{ await db.createCollection('todo') }catch(e){}
   const wxContext = cloud.getWXContext()
   // 返回当前用户的身份信息，用于数据库记录和查询
+  const token = db.collection('user').where({
+    _openid:wxContext.OPENID
+    }).get().token
   return {
     event,
     openid: wxContext.OPENID,
     fromopenid: wxContext.FROM_OPENID,
     appid: wxContext.APPID,
     unionid: wxContext.UNIONID,
+    token:token,
   }
 }

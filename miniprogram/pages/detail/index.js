@@ -26,7 +26,7 @@ Page({
     if (this.data._id.length > 0) {
       const db = await getApp().database()
       // 根据 _id 值查询数据库中对应的待办事项
-      db.collection(getApp().globalData.collection).where({
+      db.collection('todo').where({
         _id: this.data._id,
       }).get().then(res => {
         // 解包获得待办事项

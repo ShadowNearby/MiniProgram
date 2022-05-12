@@ -13,9 +13,10 @@ Page({
     getApp().getOpenId().then(async openid => {
       // 根据 _openId 数据，查询并展示待办列表
       const db = await getApp().database()
-      db.collection(getApp().globalData.collection).where({
+      db.collection('todo').where({
         _openid: openid
-      }).get().then(res => {
+      }).get().name
+      then(res => {
         const {
           data
         } = res
@@ -56,7 +57,7 @@ Page({
     // 处理星标按钮点击事件
     if (index === 0) {
       // 根据待办的 _id 找到并反转星标标识
-      db.collection(getApp().globalData.collection).where({
+      db.collection('todo').where({
         _id: todo._id
       }).update({
         data: {
@@ -72,7 +73,7 @@ Page({
     // 处理删除按钮点击事件
     if (index === 1) {
       // 根据待办的 _id 找到并删除待办记录
-      db.collection(getApp().globalData.collection).where({
+      db.collection('todo').where({
         _id: todo._id
       }).remove()
       // 更新本地数据，快速更新显示
@@ -98,7 +99,7 @@ Page({
     const todo = this.data.pending[todoIndex]
     const db = await getApp().database()
     // 根据待办 _id，获得并更新待办事项状态
-    db.collection(getApp().globalData.collection).where({
+    db.collection('todo').where({
       _id: todo._id
     }).update({
       // freq == 1 表示待办已完成，不再提醒
@@ -120,7 +121,7 @@ Page({
     const todoIndex = e.currentTarget.dataset.index
     const todo = this.data.finished[todoIndex]
     const db = await getApp().database()
-    db.collection(getApp().globalData.collection).where({
+    db.collection('todo').where({
       _id: todo._id
     }).update({
       data: {
